@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,33 +7,29 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
+	[ProtoContract]
 	public class Person
 	{
 		public Person()
-		{ Phones = new List<Phone>(); }
+		{ }
 		public Person(string firstName, string secondName, string patronymic, string info)
 		{
 			FirstName = firstName;
 			SecondName = secondName;
 			Patronymic = patronymic;
 			Info = info;
-			Phones = new List<Phone>();
 		}
+		[ProtoMember(1)]
 		public int Id { get; set; }
+		[ProtoMember(2)]
 		public string FirstName { get; set ; }
+		[ProtoMember(3)]
 		public string SecondName { get; set; }
+		[ProtoMember(4)]
 		public string Patronymic { get; set; }
+		[ProtoMember(5)]
 		public string Info { get; set; }
-		public virtual ICollection<Phone> Phones { get; set; }
-
-		public void ShowPerson()
-		{
-			Console.WriteLine($"№{Id} : ФИО:{SecondName} {FirstName} {Patronymic}\nИнформация:{Info}\nТелефоны:");
-			foreach (Phone number in Phones)
-			{
-				Console.WriteLine($"{number.Number}");
-			}
-		}
-
+		[ProtoMember(6)]
+		public virtual ICollection<Phone> Phones { get; set; } = new List<Phone>();
 	}
 }

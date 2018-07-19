@@ -13,6 +13,7 @@ namespace WindowsFormsApp1
 			: base("DbConnection")
 		{ }
 		public DbSet<Person> People { get; set; }
+		public DbSet<Phone> Phones { get; set; }
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
